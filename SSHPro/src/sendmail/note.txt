@@ -1,0 +1,50 @@
+java.lang.NoClassDefFoundError: com/sun/mail/util/LineInputStream
+ at javax.mail.Session.loadProvidersFromStream(Session.java:928)
+ at javax.mail.Session.access$000(Session.java:174)
+ at javax.mail.Session$1.load(Session.java:870)
+ at javax.mail.Session.loadResource(Session.java:1084)
+ at javax.mail.Session.loadProviders(Session.java:889)
+ at javax.mail.Session.<init>(Session.java:210)
+ at javax.mail.Session.getDefaultInstance(Session.java:299)
+ at mail.SendMail.sendMail(SendMail.java:31)
+ at mail.SendMail.main(SendMail.java:50)
+Exception in thread "main" 
+解决方案:在myeclipse的安装目录下搜索javaee.jar,然后用压缩软件打开，删除javax下的mail文件夹
+
+java.lang.NoClassDefFoundError: com/sun/activation/registries/LogSupport
+ at javax.activation.MailcapCommandMap.<init>(MailcapCommandMap.java:140)
+ at javax.activation.CommandMap.getDefaultCommandMap(CommandMap.java:61)
+ at javax.activation.DataHandler.getCommandMap(DataHandler.java:153)
+ at javax.activation.DataHandler.getDataContentHandler(DataHandler.java:611)
+ at javax.activation.DataHandler.writeTo(DataHandler.java:315)
+ at javax.mail.internet.MimeUtility.getEncoding(MimeUtility.java:264)
+ at javax.mail.internet.MimeBodyPart.updateHeaders(MimeBodyPart.java:1299)
+ at javax.mail.internet.MimeMessage.updateHeaders(MimeMessage.java:2071)
+ at javax.mail.internet.MimeMessage.saveChanges(MimeMessage.java:2039)
+ at javax.mail.Transport.send(Transport.java:119)
+ at mail.SendMail.sendMailNoValidate(SendMail.java:48)
+ at mail.SendMail.main(SendMail.java:96)
+Exception in thread "main" 
+解决方案:在myeclipse的安装目录下搜索javaee.jar,然后用压缩软件打开，删除javax文件夹下的activation文件夹
+
+
+javax.mail.SendFailedException: Sending failed;
+  nested exception is: 
+ javax.mail.MessagingException: 503 Error: need EHLO and AUTH first !
+
+ at javax.mail.Transport.send0(Transport.java:219)
+ at javax.mail.Transport.send(Transport.java:81)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.sendMailNoValidate(SendMailServiceImpl.java:210)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.sendMail(SendMailServiceImpl.java:243)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.main(SendMailServiceImpl.java:261)
+解决方案:props.put("mail.smtp.auth", "true");
+ 
+javax.mail.SendFailedException: Sending failed;
+  nested exception is: 
+ javax.mail.AuthenticationFailedException
+ at javax.mail.Transport.send0(Transport.java:219)
+ at javax.mail.Transport.send(Transport.java:81)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.sendMailNoValidate(SendMailServiceImpl.java:211)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.sendMail(SendMailServiceImpl.java:244)
+ at com.asiainfo.bboss.sendmail.SendMailServiceImpl.main(SendMailServiceImpl.java:262)
+解决方案: MyAuthenticator myauth = new MyAuthenticator(mailInfo.getUsername(),password);
